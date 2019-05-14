@@ -1,21 +1,18 @@
-package main
+package singleton
 
-import "sync"
+import (
+	"sync"
+)
 
-type DB struct {
+type singleton struct {
 }
 
-var instance *DB
-var mutex sync.Mutex
+var instance *singleton
 var once sync.Once
 
-func GetInstance() *DB {
+func GetInstance() *singleton {
 	once.Do(func() {
-		instance = &DB{}
+		instance = &singleton{}
 	})
 	return instance
-}
-
-func main() {
-
 }
